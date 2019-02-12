@@ -2,21 +2,33 @@ import React, { Component } from 'react';
 import kendal from '../images/kendal.jpg';
 import iconPresent from '../images/present.png';
 import Activity from './Activity.js';
+import Noti from './Noti';
+import Member from './Member';
+import Logout from './Logout';
+import { Link } from 'react-router';
+import Overview from './Overview';
+import Insight from './Insight';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 0,
+      selected: this.props.location.pathname,
     }
   }
 
   render() {
+    console.log(this.props.location.pathname);
     return (
       <div className="App">
         <div className='greenHeader' />
         <div className='content'>
-          <Activity />
+          {this.state.selected==='/activity' &&<Activity />}
+          {this.state.selected==='/noti' &&<Noti />}
+          {this.state.selected==='/member' &&<Member />}
+          {this.state.selected==="/overview" &&<Overview />}
+          {this.state.selected==="/insight" &&<Insight />}
+          {this.state.selected==="/logout" &&<Logout />}
         </div>
         <div className='grayBorder'>
 
@@ -25,35 +37,15 @@ class Home extends Component {
           <h2>ID : 555555</h2>
 
           <ul className='sidebar'>
-            <li onClick={() => this.setState({ selected: 0 })}><a className={this.state.selected === 0 ? 'active' : 'a:hover:not(.active)'} >Activity</a></li>
-            <li onClick={() => this.setState({ selected: 1 })}><a className={this.state.selected === 1 ? 'active' : 'a:hover:not(.active)'}>Notification</a></li>
-            <li onClick={() => this.setState({ selected: 2 })}><a className={this.state.selected === 2 ? 'active' : 'a:hover:not(.active)'}>Members</a></li>
-            <li onClick={() => this.setState({ selected: 3 })}><a className={this.state.selected === 3 ? 'active' : 'a:hover:not(.active)'}>Overview</a></li>
-            <li onClick={() => this.setState({ selected: 4 })}><a className={this.state.selected === 4 ? 'active' : 'a:hover:not(.active)'}>Insight</a></li>
-            <li onClick={() => this.setState({ selected: 5 })}><a className={this.state.selected === 5 ? 'active' : 'a:hover:not(.active)'}>Logout</a></li>
-          </ul>
-
-          {/* <div className='whiteBorder'>
-            <div className={this.state.selected === 0 ? 'selected menu' : 'menu select'} onClick={() => this.setState({ selected: 0 })}><a><img src={iconPresent} height="25" width="25" /><b> Activities</b></a></div>
-          </div>
-          <div className='whiteBorder'>
-            <div className='menu'><a className={this.state.selected === 1 ? 'selected' : 'select'} onClick={() => this.setState({ selected: 1 })}>Notification</a></div>
-          </div>
-          <div className='whiteBorder'>
-            <div className='menu'><p className={this.state.selected === 2 ? 'selected' : 'select'} onClick={() => this.setState({ selected: 2 })}>Members</p></div>
-          </div>
-          <div className='whiteBorder'>
-            <div className='menu'><p>Overview</p></div>
-          </div>
-          <div className='whiteBorder'>
-            <div className='menu'><p>Insight</p></div>
-          </div>
-          <div className='whiteBorder'>
-
-            <div className='menu'><p>Logout</p></div>
-          </div> */}
+            <li onClick={() => this.setState({ selected: '/activity' })}><Link to="/activity" className={this.state.selected === '/activity' ? 'active' : 'a:hover:not(.active)'} >Activity</Link></li>
+            <li onClick={() => this.setState({ selected: '/noti' })}><Link to="/noti" className={this.state.selected === '/noti' ? 'active' : 'a:hover:not(.active)'} >Notification</Link></li>
+            <li onClick={() => this.setState({ selected: '/member' })}><Link to="/member" className={this.state.selected === '/member' ? 'active' : 'a:hover:not(.active)'}>Members</Link></li>
+            <li onClick={() => this.setState({ selected: "/overview" })}><Link to="/overview" className={this.state.selected === "/overview" ? 'active' : 'a:hover:not(.active)'}>Overview</Link></li>
+            <li onClick={() => this.setState({ selected: "/insight" })}><Link to="/insight" className={this.state.selected === "/insight" ? 'active' : 'a:hover:not(.active)'}>Insight</Link></li>
+            <li onClick={() => this.setState({ selected: "/logout" })}><Link to="/logout" className={this.state.selected === "/logout" ? 'active' : 'a:hover:not(.active)'}>Logout</Link></li>
+          </ul>        
         </div>
-        
+
 
       </div>
     );
