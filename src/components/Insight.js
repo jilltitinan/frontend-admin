@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import _ from 'lodash';
 
 class Insight extends Component {
 
@@ -7,7 +8,7 @@ class Insight extends Component {
 
     return (
 
-      <div>
+      <div className='overviewBiggest'>
         <button type="submit" value="back" className="backButton">Back</button>
         <div className='container'>
           <div className='overview'>

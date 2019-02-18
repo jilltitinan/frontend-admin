@@ -166,7 +166,7 @@
 
 .dataTable {
   color: black;
-  margin: auto;  
+  margin: auto;
   font-size: 18px;
 }
 
@@ -283,4 +283,8 @@ p.text-left {
   height: 1px;
   border-top: 1px solid #ccc;
   margin: 1em 0;
+}
+
+.overviewBiggest {
+  margin-left: 10%;
 }
