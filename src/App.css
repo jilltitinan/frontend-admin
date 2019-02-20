@@ -382,3 +382,22 @@ body {
   border-bottom: 1px solid gray;
 }
 
+.overview-header-table {
+  background-color: #3C6E71;
+  padding: 10px;
+  color: white;
+}
+
+.overview-data-table {
+  padding: 10px;
+  border: 2px solid #3C6E71;
+  border-top: 0;
+  border-bottom: 0;
+  margin: 0;
+}
+
+.overview-LastContent {
+  padding: 10px;
+  border: 2px solid #3C6E71;
+  margin: 0;
+}

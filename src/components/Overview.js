@@ -25,82 +25,54 @@ class Overview extends Component {
 
   render() {
 
-
     return (
-      <div className='contentActivity'>
-        <button type="submit" value="back" className="backButton">Back</button>
-        <div className='container'>
-          <div className='container'>
-            <div className='overview'>
-              <p className='text-header'><b>USER OVERVIEW</b></p>
-            </div>
-            <div className="flex-container row">
-              <div className='width-600'>
-                <p className="text-left font22"><b>Name: </b>{this.state.people.name} </p>
-              </div>
+      <div className="main-display">
+        <p className="header-text"><b>USER OVERVIEW</b></p>
+        <table className="width-80per">
 
-            </div>
-            <div className="flex-container row">
-              <div className='width-600'>
-                <p className="text-left font22"><b>User ID: </b> {this.state.people.userID} </p>
-              </div>
-            </div>
-          </div>
-          <div className="tableContainer">
-            <div className="flex-container">
-              <div className="overviewHead flex4 headerTable">Overview</div>
-              <div className="overviewHead flex3 headerTable"></div>
-            </div>
-            <div className="flex-container font22">
-              <div className="overviewContent flex4">Using</div>
-              <div className="overviewContent flex3">{this.state.people.using} Times</div>
-            </div>
-            <div className="flex-container font22">
-              <div className="overviewContent flex4">Time up</div>
-              <div className="overviewContent flex3">{this.state.people.timeUp} Times</div>
-            </div>
-            <div className="flex-container font22">
-              <div className="overviewLastContent flex4">Coin left</div>
-              <div className="overviewLastContent flex3">{this.state.people.point} coins</div>
-            </div>
+          <tr className="display-flex overview-header-table">
+            <th className="flex-1">Overview</th>
+            <th className="flex-1"></th>
+          </tr>
 
-          </div>
+          <tr className="display-flex overview-data-table">
+            <td className="flex-1">Using</td>
+            <td className="flex-1">{this.state.people.using}</td>
+          </tr>
+          <tr className="display-flex overview-data-table">
+            <td className="flex-1">Time up</td>
+            <td className="flex-1">{this.state.people.timeUp}</td>
+          </tr>
+          <tr className="display-flex overview-LastContent">
+            <td className="flex-1">Coin Left</td>
+            <td className="flex-1">{this.state.people.point}</td>
+          </tr>
+        </table>
 
-          <div >
-            <br></br>
-            <br></br>
-            <br></br>
-            <div className='yellowHeader flex-container'>
-              <div className='flex1 headerTable'><p><b>Status</b></p></div>
-              <div className='flex1 headerTable'><p><b>Booking ID</b></p></div>
-              <div className='flex1 headerTable'><p><b>User ID</b></p></div>
-              <div className='flex1 headerTable'><p><b>Place</b></p></div>
-              <div className='flex2 headerTable'><p><b>Date Requested</b></p></div>
-            </div>
+        <table className="width-80per">
 
+          <tr className="display-flex header-table">
+            <th className="flex-1">Status</th>
+            <th className="flex-1">Booking ID</th>
+            <th className="flex-1">User ID</th>
+            <th className="flex-1">Place</th>
+            <th className="flex-1">Date Requested</th>
+          </tr>
 
-            {(this.state.bookList.length != 0) && this.state.bookList.map(bookList => (
-              <Link to={`insight/${bookList.id_booking}`} className='linkClick' key={bookList.id_booking}>
-                <div className='whiteHeader flex-container' >
-                  {/* <div className={`${this.state.reserve.status == 'using' ? 'usingStatus flex1 whiteHeader' : this.state.reserve.status == 'booked' ? 'bookedStatus flex1 whiteHeader' : 'rejectStatus flex1 whiteHeader'}`}>
-              <div ><p><b>using</b></p></div>
-            </div> */}
-                  <div className='flex1 dataTable'><p><b>{bookList.status}</b></p></div>
-                  <div className='flex1 dataTable'><p><b>{bookList.id_booking}</b></p></div>
-                  <div className='flex1 dataTable'><p><b>{bookList.id_user}</b></p></div>
-                  <div className='flex2 dataTable'><p><b>{bookList.location}</b></p></div>
-                  <div className='flex2 dataTable'><p><b>{bookList.dateModified}</b></p></div>
-                </div>
-              </Link>
-            ))}
+          {this.state.bookList.map(bookList => (
+            <Link to={`insight/${bookList.id_booking}`} className='linkClick'>
+              <tr className="display-flex data-table">
+                <td className={`${bookList.status == 'Use' ? 'flex-1 useStatus' : bookList.status == 'Unuse' ? 'flex-1 bookedStatus' : ' flex-1 rejectStatus'}`}>{bookList.status}</td>
+                <td className="flex-1">{bookList.id_booking}</td>
+                <td className="flex-1">{bookList.id_user}</td>
+                <td className="flex-1">{bookList.location}</td>
+                <td className="flex-1">{bookList.dateModified}</td>
+              </tr>
+            </Link>
+          ))}
 
-            {this.state.bookList.length === undefined || this.state.bookList.length == 0 &&
-              <div className='flex1 dataTable'><p>No Data </p>    </div>
-            }
+        </table>
 
-          </div>
-
-        </div>
       </div>
 
 
