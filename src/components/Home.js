@@ -22,9 +22,9 @@ class Header extends Component {
     return (
       <div className="App">
         <div className='greenHeader' />
-        <div>
+        {/* <div> */}
           {this.props.children}
-        </div>
+        {/* </div> */}
         
         
         {/* <div className='content'>

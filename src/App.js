@@ -21,7 +21,7 @@ class App extends Component {
               <Route path="noti" component={Noti}/>
               <Route path="member" component={Member} />
               <Route path="overview/:form" component={Overview} />
-              <Route path="insight" component={Insight} />
+              <Route path="insight/:form2" component={Insight} />
               <Route path="logout" component={Logout} />
             </Route>
       </Router>

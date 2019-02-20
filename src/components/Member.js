@@ -31,29 +31,33 @@ class Member extends Component {
   render() {
 
     return (
-      <div className='contentActivity'>
-        <div className='activity'><p><b>Member</b></p></div>
-        <div className='yellowHeader flex-container'>
-          <div className='flex1 headerTable'><p><b>User ID</b></p></div>
-          <div className='flex1 headerTable'><p><b>Name</b></p></div>
-          <div className='flex1 headerTable'><p><b>Using</b></p></div>
-          <div className='flex1 headerTable'><p><b>Booked</b></p></div>
-          <div className='flex1 headerTable'><p><b>Time up</b></p></div>
-        </div>
+      <div className="main-display">
+        <p className="header-text"><b>MEMBERS</b></p>
 
-        {this.state.reserve.map(reserve => (
-          // <div className='whiteHeader flex-container' onClick={() => this.handleClick(reserve.id_account)} key={reserve.id_account}>
-          
-            <div className='whiteHeader flex-container' key={reserve.id_account} >  
-             <Link to={`overview/${reserve.id_account}`}> <div className='flex1 dataTable'><p><b>{reserve.id_account}</b></p></div></Link>
-              <div className='flex1 dataTable'><p><b>{reserve.name}</b></p></div>
-              <div className='flex1 dataTable'><p><b>{reserve.using}</b></p></div>
-              <div className='flex1 dataTable'><p><b>{reserve.booked}</b></p></div>
-              <div className='flex1 dataTable'><p><b>{reserve.timeUp}</b></p></div>
-            </div>
-        ))}
+        <table className="width-80per">
+
+          <tr className="display-flex header-table">
+            <th className="flex-1">User ID</th>
+            <th className="flex-1">Name</th>
+            <th className="flex-1">Using</th>
+            <th className="flex-1">Booked</th>
+            <th className="flex-1">Time up</th>
+          </tr>
+
+          {this.state.reserve.map(reserve => (
+            <Link to={`overview/${reserve.id_account}`} className='linkClick'>
+              <tr className="display-flex data-table">
+                <td className="flex-1">{reserve.id_account}</td>
+                <td className="flex-1">{reserve.name}</td>
+                <td className="flex-1">{reserve.using}</td>
+                <td className="flex-1">{reserve.booked}</td>
+                <td className="flex-1">{reserve.timeUp}</td>
+              </tr>
+            </Link>
+          ))}
+
+        </table>
       </div>
-
 
     );
   }

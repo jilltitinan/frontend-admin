@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
 import moment from 'moment';
+import { Link } from "react-router";
 
 class Noti extends Component {
   constructor(props) {
@@ -13,47 +14,42 @@ class Noti extends Component {
 
   componentDidMount() {
     axios.get('https://locker54.azurewebsites.net/web/Notification')
-      // .then(response =>
-      //   response.data.map(p => {
-      //      this.setState({ reserve: p })
-      //      return this.state.reserve;
-      //   })
-      // )
       .then(res => {
         this.setState({ reserve: res.data });
       })
 
   }
 
-
   render() {
 
     return (
-      <div className='contentActivity'>
-        <div className='activity'><p><b>NOTIFICATION</b></p></div>
-        <div className='yellowHeader flex-container'>
-          <div className='flex1 headerTable'><p><b>status</b></p></div>
-          <div className='flex1 headerTable'><p><b>Booking ID</b></p></div>
-          <div className='flex1 headerTable'><p><b>User ID</b></p></div>
-          <div className='flex1 headerTable'><p><b>Place</b></p></div>
-          <div className='flex1 headerTable'><p><b>Date Requested</b></p></div>
-        </div>
+      <div className="main-display">
+        <p className="header-text"><b>NOTIFICATION</b></p>
 
-        {this.state.reserve.map(reserve => (
-          <div className='whiteHeader flex-container'>
+        <table className="width-80per">
 
-            <div className={`${reserve.status == 'Use' ? 'usingStatus flex1 whiteHeader' : reserve.status == 'Unuse' ? 'bookedStatus flex1 whiteHeader' : 'rejectStatus flex1 whiteHeader'}`}>
-              <div ><p><b>{reserve.status}</b></p></div>
-            </div>
-            <div className='flex1 dataTable'><p><b>{reserve.id_booking}</b></p></div>
-            <div className='flex1 dataTable'><p><b>{reserve.id_user}</b></p></div>
-            <div className='flex1 dataTable'><p><b>{reserve.location}</b></p></div>
-            <div className='flex1 dataTable'><p><b>{moment(reserve.startDay).format('DD-MM-YYYY')}</b></p></div>
-          </div>
-        ))}
+          <tr className="display-flex header-table">
+            <th className="flex-1">Status</th>
+            <th className="flex-1">Booking ID</th>
+            <th className="flex-1">User ID</th>
+            <th className="flex-1">Place</th>
+            <th className="flex-1">Date Requested</th>
+          </tr>
+
+          {this.state.reserve.map(reserve => (
+            <Link to={`insight/${reserve.id_booking}`} className='linkClick'>
+              <tr className="display-flex data-table">
+                <td className={`${reserve.status == 'Use' ? 'flex-1 useStatus' : reserve.status == 'Unuse' ? 'flex-1 bookedStatus' : ' flex-1 rejectStatus'}`}>{reserve.status}</td>
+                <td className="flex-1">{reserve.id_booking}</td>
+                <td className="flex-1">{reserve.id_user}</td>
+                <td className="flex-1">{reserve.location}</td>
+                <td className="flex-1">{moment(reserve.dateModified).format('DD-MM-YYYY')}</td>
+              </tr>
+            </Link>
+          ))}
+
+        </table>
       </div>
-
-
     );
   }
 }
