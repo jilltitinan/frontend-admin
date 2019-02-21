@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
-import { Link } from "react-router";
+import { Link, browserHistory } from "react-router";
+import { withRouter } from 'react-router-dom';
 
 class Insight extends Component {
 
@@ -24,72 +25,31 @@ class Insight extends Component {
   render() {
 
     return (
+      <div className="main-display">
 
-      <div className='overviewBiggest font20'>
-        <button type="submit" value="back" className="backButton">Back</button>
-        <div className='container'>
-          <div className='overview'>
-            <p className='text-header'><b>Detail</b></p>
-          </div>
-          <div className="flex-container row">
-            <div className='width-200'>
-              <p className="text-left"><b>Name</b> {this.state.detail.name} </p>
-            </div>
-          </div>
-          <div className="flex-container row">
-            <div className='width-600'>
-              <p className="text-left"><b>User ID: </b> {this.state.detail.id_user} </p>
-            </div>
-          </div>
+        <div className='insightButton' onClick={browserHistory.goBack}>
+          <a class="previous">&laquo; Previous</a>
         </div>
 
-        <hr className='lineDesign' />
+        <div className='insightDetail width-80per'>
+          <p className="header-text"><b>DETAIL</b></p>
 
-        <div className='container'>
+          <p className='pInsight'><b>Name: </b>  {this.state.detail.name}</p>
+          <p className='pInsight'><b>User ID: </b>  {this.state.detail.id_user}</p>
 
-          <div className="flex-container row">
-            <div className='width-200'>
-              <p className="text-left"><b>Leave ID:</b> {this.state.detail.bookingID} </p>
-            </div>
-          </div>
+          <hr className='hrInsight' />
 
-          <div className="flex-container row">
-            <div className='width-200'>
-              <p className="text-left"><b>Place: </b> {this.state.detail.location} </p>
-            </div>
-            <div className='width-200'>
-              <p className="text-left"><b>Size: </b> {this.state.detail.size} </p>
-            </div>
-          </div>
-
-          <div className="flex-container row">
-            <div className='width-600'>
-              <p className="text-left"><b>Day Start: </b> {this.state.detail.startDate} </p>
-            </div>
-          </div>
-
-          <div className="flex-container row">
-            <div className='width-600'>
-              <p className="text-left"><b>Day End: </b> {this.state.detail.endDate}</p>
-            </div>
-          </div>
-
-          <div className="flex-container row">
-            <div className='width-600'>
-              <p className="text-left"><b>Requested Date: </b> {this.state.detail.dateModified}</p>
-            </div>
-          </div>
-
-          <div className="flex-container row">
-            <div className='width-600'>
-              <p className="text-left"><b>Number Vacancy: </b> {this.state.detail.numberVacancy}</p>
-            </div>
-          </div>
-
-
+          <p className='pInsight'><b>Leave ID:</b> {this.state.detail.bookingID} </p>
+          <p className='pInsight'><b>Place: </b> {this.state.detail.location}</p>
+          <p className='pInsight'><b>Size: </b> {this.state.detail.size}</p>
+          <p className='pInsight'><b>Day Start: </b> {this.state.detail.startDate}</p>
+          <p className='pInsight'><b>Day End: </b> {this.state.detail.endDate}</p>
+          <p className='pInsight'><b>Requested Date: </b> {this.state.detail.dateModified}</p>
+          <p className='pInsight'><b>Number Vacancy: </b> {this.state.detail.numberVacancy}</p>
         </div>
 
-      </div >
+      </div>
+
     );
   }
 }

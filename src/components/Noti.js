@@ -24,9 +24,9 @@ class Noti extends Component {
 
     return (
       <div className="main-display">
-        <p className="header-text"><b>NOTIFICATION</b></p>
 
         <table className="width-80per">
+          <p className="header-text"><b>NOTIFICATION</b></p>
 
           <tr className="display-flex header-table">
             <th className="flex-1">Status</th>

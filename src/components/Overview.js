@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
-import { Link } from "react-router";
+import { Link, browserHistory } from "react-router";
 
 class Overview extends Component {
   constructor(props) {
@@ -27,9 +27,12 @@ class Overview extends Component {
 
     return (
       <div className="main-display">
-        <p className="header-text"><b>USER OVERVIEW</b></p>
-        <table className="width-80per">
+        <div className='insightButton' onClick={browserHistory.goBack}>
+          <a class="previous">&laquo; Previous</a>
+        </div>
 
+        <table className="width-80per">
+          <p className="header-text"><b>USER OVERVIEW</b></p>
           <tr className="display-flex overview-header-table">
             <th className="flex-1">Overview</th>
             <th className="flex-1"></th>

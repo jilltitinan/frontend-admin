@@ -22,19 +22,8 @@ class Header extends Component {
     return (
       <div className="App">
         <div className='greenHeader' />
-        {/* <div> */}
-          {this.props.children}
-        {/* </div> */}
-        
-        
-        {/* <div className='content'>
-          {this.state.selected==='/activity' }
-          {this.state.selected==='/noti' &&<Noti />}
-          {this.state.selected==='/member' &&<Member />}
-          {this.state.selected==="/overview" &&<Overview />}
-          {this.state.selected==="/insight" &&<Insight />}
-          {this.state.selected==="/logout" &&<Logout />}
-        </div> */}
+        {this.props.children}
+
         <div className='grayBorder'>
 
 
@@ -46,19 +35,15 @@ class Header extends Component {
             <li onClick={() => this.setState({ selected: 'activity2' })}><Link to='/activity' className={this.state.selected === 'activity2' ? 'active' : 'a:hover:not(.active)'} >Activity</Link></li>
             <li onClick={() => this.setState({ selected: 'noti' })}><Link to="/noti" className={this.state.selected === 'noti' ? 'active' : 'a:hover:not(.active)'} >Notification</Link></li>
             <li onClick={() => this.setState({ selected: 'member' })}><Link to="/member" className={this.state.selected === 'member' ? 'active' : 'a:hover:not(.active)'}>Members</Link></li>
-            <li onClick={() => this.setState({ selected: "overview" })}><Link to="/overview" className={this.state.selected === "overview" ? 'active' : 'a:hover:not(.active)'}>Overview</Link></li>
-            <li onClick={() => this.setState({ selected: "insight" })}><Link to="/insight" className={this.state.selected === "insight" ? 'active' : 'a:hover:not(.active)'}>Insight</Link></li>
-            <li onClick={() => this.setState({ selected: "logout" })}><Link to="/logout" className={this.state.selected === "logout" ? 'active' : 'a:hover:not(.active)'}>Logout</Link></li>
+            <li onClick={() => this.setState({ selected: "locker" })}><Link to="/locker" className={this.state.selected === "locker" ? 'active' : 'a:hover:not(.active)'}>Locker</Link></li>
+            <li onClick={() => this.setState({ selected: "admin" })}><Link to="/admin" className={this.state.selected === "admin" ? 'active' : 'a:hover:not(.active)'}>Administrator</Link></li>
+            <li onClick={() => this.setState({ selected: "logout" })}><Link className={this.state.selected === "logout" ? 'active' : 'a:hover:not(.active)'}>Logout</Link></li>
           </ul>
-
-
         </div>
-
-
-
       </div>
     );
   }
+
 }
 
 export default Header;

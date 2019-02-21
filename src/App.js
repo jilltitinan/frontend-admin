@@ -9,6 +9,9 @@ import Overview from './components/Overview';
 import Insight from './components/Insight';
 import Logout from './components/Logout';
 import Header from './components/Home';
+import admin from './components/Admin';
+import Locker from './components/Locker';
+import LockerDetail from './components/LockerDetail';
 
 class App extends Component {
 
@@ -23,6 +26,9 @@ class App extends Component {
               <Route path="overview/:form" component={Overview} />
               <Route path="insight/:form2" component={Insight} />
               <Route path="logout" component={Logout} />
+              <Route path="admin" component={admin} />
+              <Route path="locker" component={Locker} />
+              <Route path='lockerDetail/:form3' component={LockerDetail} />
             </Route>
       </Router>
       </div>
