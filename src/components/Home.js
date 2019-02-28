@@ -8,13 +8,50 @@ import Logout from './Logout';
 import { Link, Router, Route, } from 'react-router';
 import Overview from './Overview';
 import Insight from './Insight';
+import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
+import GoogleLogin from 'react-google-login';
+
+const responseGoogle = (response) => {
+  console.log(response);
+}
+
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  }
+};
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selected: this.props.location.pathname,
-    }
+      modalIsOpen: false
+    };
+
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = '#000000';
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
   }
 
   render() {
@@ -27,6 +64,12 @@ class Header extends Component {
         <div className='grayBorder'>
 
 
+          {/* <GoogleLogin
+            clientId="367051335006-3ibce4jslddaibdincs9t267vmpgjkob.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+          />, */}
           <img src={kendal} height="105" width="105" />
           <h1>Kendall </h1>
           <h2>ID : 555555</h2>
@@ -37,13 +80,30 @@ class Header extends Component {
             <li onClick={() => this.setState({ selected: 'member' })}><Link to="/member" className={this.state.selected === 'member' ? 'active' : 'a:hover:not(.active)'}>Members</Link></li>
             <li onClick={() => this.setState({ selected: "locker" })}><Link to="/locker" className={this.state.selected === "locker" ? 'active' : 'a:hover:not(.active)'}>Locker</Link></li>
             <li onClick={() => this.setState({ selected: "admin" })}><Link to="/admin" className={this.state.selected === "admin" ? 'active' : 'a:hover:not(.active)'}>Administrator</Link></li>
-            <li onClick={() => this.setState({ selected: "logout" })}><Link className={this.state.selected === "logout" ? 'active' : 'a:hover:not(.active)'}>Logout</Link></li>
+            <li onClick={this.openModal}><Link className={this.state.selected === "logout" ? 'active' : 'a:hover:not(.active)'}>Logout</Link></li>
           </ul>
+
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+
+          >
+            <div className='modalLogout'>
+              <h2 ref={subtitle => this.subtitle = subtitle}>Are you sure to logout?</h2>
+              <button className='modalYes'>Yes</button>
+              <button className='modalNo' onClick={this.closeModal}>No</button>
+            </div>
+
+          </Modal>
         </div>
       </div>
+
+
     );
   }
-
 }
 
 export default Header;

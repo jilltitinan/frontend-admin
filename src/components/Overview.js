@@ -14,7 +14,7 @@ class Overview extends Component {
 
   componentDidMount() {
 
-    axios.get(`https://locker54.azurewebsites.net/web/UserOverview?id=${parseInt(_.last(window.location.pathname.split('/')))}`)
+    axios.get(`https://locker54.azurewebsites.net/web/UserOverview?id_account=${parseInt(_.last(window.location.pathname.split('/')))}`)
       .then(res => {
         const person = res.data
         this.setState({ people: person })
@@ -28,7 +28,7 @@ class Overview extends Component {
     return (
       <div className="main-display">
         <div className='insightButton' onClick={browserHistory.goBack}>
-          <a class="previous">&laquo; Previous</a>
+          <a className="previous">&laquo; Previous</a>
         </div>
 
         <table className="width-80per">
@@ -63,7 +63,7 @@ class Overview extends Component {
           </tr>
 
           {this.state.bookList.map(bookList => (
-            <Link to={`insight/${bookList.id_booking}`} className='linkClick'>
+            <Link to={`insight/${bookList.id_booking}`} className='linkClick' key={bookList.id_booking}>
               <tr className="display-flex data-table">
                 <td className={`${bookList.status == 'Use' ? 'flex-1 useStatus' : bookList.status == 'Unuse' ? 'flex-1 bookedStatus' : ' flex-1 rejectStatus'}`}>{bookList.status}</td>
                 <td className="flex-1">{bookList.id_booking}</td>

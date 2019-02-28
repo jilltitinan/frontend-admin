@@ -13,7 +13,7 @@ class Locker extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://locker54.azurewebsites.net/api/LockerMetadata/LockerAll')
+        axios.get('https://locker54.azurewebsites.net/web/Locker')
             .then(res => {
                 this.setState({ reserve: res.data });
             })
@@ -36,7 +36,7 @@ class Locker extends Component {
                     </tr>
 
                     {this.state.reserve.map(reserve => (
-                        <Link to={`lockerDetail/${reserve.mac_address}`} className='linkClick'>
+                        <Link to={`lockerDetail/${reserve.mac_address}`} className='linkClick' key={reserve.mac_address}>
                             <tr className="display-flex data-table">
                                 <td className="flex-1">{reserve.mac_address}</td>
                                 <td className="flex-1">{reserve.location}</td>
