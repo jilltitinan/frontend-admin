@@ -12,10 +12,12 @@ import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import GoogleLogin from 'react-google-login';
 
+import { connect } from 'react-redux';
+import { login } from '../actions';
+
 const responseGoogle = (response) => {
   console.log(response);
 }
-
 
 const customStyles = {
   content: {
@@ -55,6 +57,8 @@ class Header extends Component {
   }
 
   render() {
+    const { id_reserve, code, status} = this.props.data.login;
+
     console.log(this.props.location.pathname);
     return (
       <div className="App">
@@ -62,16 +66,8 @@ class Header extends Component {
         {this.props.children}
 
         <div className='grayBorder'>
-
-
-          {/* <GoogleLogin
-            clientId="367051335006-3ibce4jslddaibdincs9t267vmpgjkob.apps.googleusercontent.com"
-            buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-          />, */}
           <img src={kendal} height="105" width="105" />
-          <h1>Kendall </h1>
+          <h1>{this.props.data} </h1>
           <h2>ID : 555555</h2>
 
           <ul className='sidebar'>
@@ -106,4 +102,8 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = ({ login }) => {
+  const { data } = login;
+  return { data };
+};
+export default connect(mapStateToProps, { login })(Header)
