@@ -4,5 +4,6 @@ import LoginReducer from './LoginReducer';
 
 export default combineReducers ({
     memberDetail : MemberReducer,
-    loginDetail : LoginReducer
+    login : LoginReducer,
+    
 });

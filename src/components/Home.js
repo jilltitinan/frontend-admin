@@ -5,7 +5,7 @@ import Activity from './Activity.js';
 import Noti from './Noti';
 import Member from './Member';
 import Logout from './Logout';
-import { Link, Router, Route, } from 'react-router';
+import { Link, Router, Route, browserHistory } from 'react-router';
 import Overview from './Overview';
 import Insight from './Insight';
 import ReactDOM from 'react-dom';
@@ -35,7 +35,7 @@ class Header extends Component {
     super(props);
     this.state = {
       selected: this.props.location.pathname,
-      modalIsOpen: false
+      modalIsOpen: false,
     };
 
     this.openModal = this.openModal.bind(this);
@@ -57,9 +57,13 @@ class Header extends Component {
   }
 
   render() {
-    const { id_reserve, code, status} = this.props.data.login;
+
+    // const { id_reserve, code, status} = this.props.data.login;
 
     console.log(this.props.location.pathname);
+
+    console.log("result : ",this.props.data);
+    
     return (
       <div className="App">
         <div className='greenHeader' />
@@ -67,7 +71,7 @@ class Header extends Component {
 
         <div className='grayBorder'>
           <img src={kendal} height="105" width="105" />
-          <h1>{this.props.data} </h1>
+          <h1>{this.props.data.w3.ig} </h1>
           <h2>ID : 555555</h2>
 
           <ul className='sidebar'>
@@ -106,4 +110,5 @@ const mapStateToProps = ({ login }) => {
   const { data } = login;
   return { data };
 };
+
 export default connect(mapStateToProps, { login })(Header)

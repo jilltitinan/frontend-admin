@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../images/LOGOOOOO.png';
-import { Link, Router, Route, Redirect } from 'react-router';
+import { Link, Router, Route, Redirect, browserHistory } from 'react-router';
 import GoogleLogin from 'react-google-login';
 import { login } from '../actions';
 import { connect } from 'react-redux';
@@ -18,6 +18,7 @@ class Login extends Component {
     responseGoogle(response) {
         console.log("google response :", response);
         this.props.login(response);
+        browserHistory.push('/activity')
     }
 
     render() {
