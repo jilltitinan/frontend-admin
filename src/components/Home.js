@@ -10,7 +10,8 @@ import Overview from './Overview';
 import Insight from './Insight';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import GoogleLogin from 'react-google-login';
+// import GoogleLogin from 'react-google-login';
+import { GoogleLogout } from 'react-google-login';
 
 import { connect } from 'react-redux';
 import { login } from '../actions';
@@ -56,14 +57,21 @@ class Header extends Component {
     this.setState({ modalIsOpen: false });
   }
 
+  responseLogout() {
+    // console.log("respen logout : ", response)
+    // this.setState({ modalIsOpen: false });
+    browserHistory.push('/')
+
+  }
+
   render() {
 
     // const { id_reserve, code, status} = this.props.data.login;
 
     console.log(this.props.location.pathname);
 
-    console.log("result : ",this.props.data);
-    
+    console.log("result : ", this.props.data);
+
     return (
       <div className="App">
         <div className='greenHeader' />
@@ -72,7 +80,7 @@ class Header extends Component {
         <div className='grayBorder'>
           <img src={kendal} height="105" width="105" />
           <h1>{this.props.data.w3.ig} </h1>
-          <h2>ID : 555555</h2>
+          <h2>{this.props.data.w3.Eea}</h2>
 
           <ul className='sidebar'>
             <li onClick={() => this.setState({ selected: 'activity2' })}><Link to='/activity' className={this.state.selected === 'activity2' ? 'active' : 'a:hover:not(.active)'} >Activity</Link></li>
@@ -93,8 +101,10 @@ class Header extends Component {
           >
             <div className='modalLogout'>
               <h2 ref={subtitle => this.subtitle = subtitle}>Are you sure to logout?</h2>
-              <button className='modalYes'>Yes</button>
-              <button className='modalNo' onClick={this.closeModal}>No</button>
+              <div className='loginout' >
+                <button className='modalYes' onClick={this.responseLogout}>Yes</button>
+                <button className='modalNo' onClick={this.closeModal}>No</button>
+              </div>
             </div>
 
           </Modal>
