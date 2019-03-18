@@ -40,7 +40,7 @@ class Locker extends Component {
                             <tr className="display-flex data-table">
                                 <td className="flex-1">{reserve.mac_address}</td>
                                 <td className="flex-1">{reserve.location}</td>
-                                <td className="flex-1">{reserve.isActive}</td>
+                                <td className="flex-1">{reserve.isActive.toString()}</td>
                             </tr>
                         </Link>
                     ))}
