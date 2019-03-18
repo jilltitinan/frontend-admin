@@ -528,3 +528,8 @@ body {
 .loginout{
   background-color: #FFFFFF;
 }
+
+.quoteWhite{
+  /* background-color: #FFFFFF; */
+  color: #FFFFFF;
+}
