@@ -51,7 +51,7 @@ class Overview extends Component {
             <td className="flex-1">{this.state.people.point}</td>
           </tr>
         </table>
-
+        <br />
         <table className="width-80per">
 
           <tr className="display-flex header-table">
@@ -73,6 +73,10 @@ class Overview extends Component {
               </tr>
             </Link>
           ))}
+
+          {
+            (this.state.people.timeUp == 0) && (this.state.people.using == 0) && <h3> no data</h3>
+          }
 
         </table>
 
