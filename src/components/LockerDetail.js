@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
-import moment from 'moment';
+import moment, { parseZone } from 'moment';
 import { Link, browserHistory } from "react-router";
+import { parse } from 'querystring';
+import { connect } from 'react-redux';
+import { locker } from '../actions';
 
 class LockerDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
             reserve: [],
+            vacancieslist: [],
         }
     }
 
     componentDidMount() {
-        axios.get(`https://locker54.azurewebsites.net/api/LockerMetadata/LockerMac?mac_address=${parseInt(_.last(window.location.pathname.split('/')))}`)
+
+        axios.get(`https://locker54.azurewebsites.net/web/lockerDetail?mac_address=${this.props.mac_address}`)
             .then(res => {
-                this.setState({ reserve: res.data });
+                this.setState({ reserve: res.data, vacancieslist: res.data.vacancieslist });
+                console.log("locker detail ", this.state.reserve)
             })
+
     }
 
     render() {
@@ -29,7 +36,8 @@ class LockerDetail extends Component {
 
                 <table className="width-80per">
                     <p className="header-text"><b>LOCKER DETAIL</b></p>
-                    <p>Locker ID:  Location: </p>
+                    <h2>Locker ID: {this.state.reserve.lockerID}</h2> 
+                    <h2>Location: {this.state.reserve.location}  </h2>
                     <div className="addLocker">
                         <a className='addStuff'>+ add locker</a>
                     </div>
@@ -39,16 +47,13 @@ class LockerDetail extends Component {
                         <th className="flex-1">Status</th>
                     </tr>
 
-                    {this.state.reserve.map(reserve => (
-                        <Link to={`insight/${reserve.location}`} className='linkClick'>
-                            <tr className="display-flex data-table">
-                                <td className="flex-1">{reserve.mac_address}</td>
-                                <td className="flex-1">{reserve.location}</td>
-                                <td className="flex-1">{reserve.isActive}</td>
-                            </tr>
-                        </Link>
+                    {this.state.vacancieslist.map(vacancieslist => (
+                        <tr className="display-flex data-table">
+                            <td className="flex-1" >{vacancieslist.no_vacancy}</td>
+                            <td className="flex-1" >{vacancieslist.size}</td>
+                            <td className="flex-1" >{vacancieslist.isActive.toString()}</td>
+                        </tr>
                     ))}
-
                 </table>
             </div>
 
@@ -57,4 +62,20 @@ class LockerDetail extends Component {
     }
 }
 
-export default LockerDetail;
+const mapStateToProps = (state) => {
+    const { mac_address } = state.locker;
+    return { mac_address };
+};
+
+export default connect(mapStateToProps, { locker })(LockerDetail);
+
+
+// {vacancieslist: Array(2), lockerID: "181.1.1.2", location: "twv"}
+// location: "twv"
+// lockerID: "181.1.1.2"
+// vacancieslist: Array(2)
+// 0: {vacancyID: 3, no_vacancy: "01", size: "S", isActive: true}
+// 1: {vacancyID: 4, no_vacancy: "02", size: "L", isActive: true}
+// length: 2
+// __proto__: Array(0)
+// __proto__: Object

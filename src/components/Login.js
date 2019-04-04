@@ -19,7 +19,7 @@ class Login extends Component {
         (async () => {
             let apiRes = null;
             try {
-                apiRes = await axios.get(`https://locker54.azurewebsites.net/web/IsAdmin?accountID=${response.El}`)
+                apiRes = await axios.get(`https://locker54.azurewebsites.net/web/IsAdmin?_Token=${response.tokenId}`)
                     .then(res => {
                         this.setState({ reserve: res.data });
                         console.log("id admin : ", res.data)
@@ -32,6 +32,7 @@ class Login extends Component {
                 console.error(err.response.status);  // ***
                 console.error(err.response.headers); // ***
                 this.successShow(err);
+                alert("Incorrect Email");
             }
             // finally {
             //     console.log("finally :     ", apiRes);

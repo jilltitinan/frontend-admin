@@ -3,6 +3,10 @@ import axios from 'axios';
 import _ from 'lodash';
 import moment from 'moment';
 import { Link } from "react-router";
+import { locker } from '../actions';
+import { connect } from 'react-redux';
+
+
 
 class Locker extends Component {
     constructor(props) {
@@ -18,6 +22,10 @@ class Locker extends Component {
                 this.setState({ reserve: res.data });
             })
     }
+
+    handleClick(data) {
+        this.props.locker(data);
+      }
 
     render() {
 
@@ -36,21 +44,22 @@ class Locker extends Component {
                     </tr>
 
                     {this.state.reserve.map(reserve => (
-                        <Link to={`lockerDetail/${reserve.mac_address}`} className='linkClick' key={reserve.mac_address}>
+                        <Link to={`lockerDetail/${reserve.mac_address}`} className='linkClick' key={reserve.mac_address} onClick={() => this.handleClick(reserve.mac_address)}>
                             <tr className="display-flex data-table">
                                 <td className="flex-1">{reserve.mac_address}</td>
                                 <td className="flex-1">{reserve.location}</td>
                                 <td className="flex-1">{reserve.isActive.toString()}</td>
                             </tr>
                         </Link>
+                        
                     ))}
 
                 </table>
             </div>
 
-
         );
     }
 }
 
-export default Locker;
+
+export default connect(null, { locker })(Locker)

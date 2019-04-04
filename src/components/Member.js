@@ -45,7 +45,7 @@ class Member extends Component {
           </tr>
 
           {this.state.reserve.map(reserve => (
-            <Link to={`overview/${reserve.id_account}`} className='linkClick'>
+            <Link to={`overview/${reserve.id_account}`} className='linkClick' >
               <tr className="display-flex data-table">
                 <td className="flex-1">{reserve.id_account}</td>
                 <td className="flex-1">{reserve.name}</td>
