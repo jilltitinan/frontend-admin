@@ -12,6 +12,7 @@ import admin from './components/Admin';
 import Locker from './components/Locker';
 import LockerDetail from './components/LockerDetail';
 import Login from './components/Login';
+import AddAdmin from './components/AddAdmin';
 
 class App extends Component {
 
@@ -31,6 +32,7 @@ class App extends Component {
               <Route path="/admin" component={admin} />
               <Route path="/locker" component={Locker} />
               <Route path='/lockerDetail/:form3' component={LockerDetail} />
+              <Route path="/addadmin" component={AddAdmin} />
             </Route>
         </Router>
         

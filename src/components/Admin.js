@@ -27,6 +27,9 @@ class Admin extends Component {
 
                 <table className="width-80per">
                     <p className="header-text"><b>ADMINISTRATOR</b></p>
+                    <div className="addLocker">
+                         <Link to='/addadmin' className='addStuff'>+ add administrator</Link>
+                    </div>
                     <tr className="display-flex header-table">
                         <th className="flex-1">Name</th>
                         <th className="flex-1">Email</th>

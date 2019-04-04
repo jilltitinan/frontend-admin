@@ -17,13 +17,11 @@ class LockerDetail extends Component {
     }
 
     componentDidMount() {
-
         axios.get(`https://locker54.azurewebsites.net/web/lockerDetail?mac_address=${this.props.mac_address}`)
             .then(res => {
                 this.setState({ reserve: res.data, vacancieslist: res.data.vacancieslist });
                 console.log("locker detail ", this.state.reserve)
             })
-
     }
 
     render() {
@@ -36,8 +34,7 @@ class LockerDetail extends Component {
 
                 <table className="width-80per">
                     <p className="header-text"><b>LOCKER DETAIL</b></p>
-                    <h2>Locker ID: {this.state.reserve.lockerID}</h2> 
-                    <h2>Location: {this.state.reserve.location}  </h2>
+                    <p><b>Locker ID  :</b> {this.state.reserve.lockerID} <b>Location  :</b> {this.state.reserve.location}  </p>
                     <div className="addLocker">
                         <a className='addStuff'>+ add locker</a>
                     </div>
