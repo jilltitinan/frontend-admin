@@ -542,3 +542,10 @@ body {
   background-color: rgba(255,255,255,0.3);
   transition: 0.3s all;
 }
+
+.field [type=text]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
