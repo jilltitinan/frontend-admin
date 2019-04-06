@@ -5,7 +5,7 @@ import _ from 'lodash';
 class AddAdmin extends Component {
     constructor(props) {
         super(props);
-        this.state = { name: '', email: ''};
+        this.state = { name: '', email: '' };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
@@ -17,15 +17,28 @@ class AddAdmin extends Component {
         this.setState({ name: event.target.value });
     }
 
-    
+
     handleEmail(event) {
         this.setState({ email: event.target.value });
     }
 
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
+        
+        axios.post('https://locker54.azurewebsites.net/web/AddAdminAccount', {
+            "id_account": "string",
+            "name": this.state.name,
+            "phone": "string",
+            "email": this.state.email,
+            "role": "string",
+            "point": 0
+        })
+        alert('An information was submitted: ' + this.state.value);
         event.preventDefault();
+        this.setState({
+          name: '',
+          email: ''
+        });
     }
 
 
