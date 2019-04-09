@@ -12,8 +12,10 @@ class Admin extends Component {
         }
     }
 
-    componentDidMount() {
-        axios.get('https://locker54.azurewebsites.net/web/Admin')
+    componentDidMount = async () => {
+        const value = await localStorage.getItem('token')
+        axios.get('https://locker54.azurewebsites.net/web/Admin',
+            { headers: { "Authorization": `Bearer ${value}` } })
             .then(res => {
                 this.setState({ reserve: res.data });
             })
@@ -28,13 +30,15 @@ class Admin extends Component {
                 <table className="width-80per">
                     <p className="header-text"><b>ADMINISTRATOR</b></p>
                     <div className="addLocker">
-                         <Link to='/addadmin' className='addStuff'>+ add administrator</Link>
+                        <Link to='/addadmin' className='addStuff'>+ add administrator</Link>
                     </div>
                     <tr className="display-flex header-table">
                         <th className="flex-1">Name</th>
                         <th className="flex-1">Email</th>
                     </tr>
-
+                    {this.state.reserve.length === 0 &&
+                        <h2>No Administrator</h2>
+                    }
                     {this.state.reserve.map(reserve => (
                         <tr className="display-flex data-table">
                             <td className="flex-1">{reserve.name}</td>

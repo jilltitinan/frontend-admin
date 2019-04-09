@@ -12,8 +12,11 @@ class Insight extends Component {
     }
   }
 
-  componentDidMount() {
-    axios.get(`https://locker54.azurewebsites.net/web/ReserveDetail?id_reserve=${parseInt(_.last(window.location.pathname.split('/')))}`)
+  componentDidMount = async () => {
+    const value = await localStorage.getItem('token')
+    axios.get(`https://locker54.azurewebsites.net/web/ReserveDetail?id_reserve=${parseInt(_.last(window.location.pathname.split('/')))}`,
+      { headers: { "Authorization": `Bearer ${value}` } }
+    )
       .then(res => {
         const info = res.data
         this.setState({ detail: info })

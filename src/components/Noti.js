@@ -12,8 +12,11 @@ class Noti extends Component {
     }
   }
 
-  componentDidMount() {
-    axios.get('https://locker54.azurewebsites.net/web/Notification')
+  componentDidMount = async () => {
+    const value = await localStorage.getItem('token')
+    axios.get('https://locker54.azurewebsites.net/web/Notification',
+      { headers: { "Authorization": `Bearer ${value}` } }
+    )
       .then(res => {
         this.setState({ reserve: res.data });
       })
@@ -35,7 +38,9 @@ class Noti extends Component {
             <th className="flex-1">Place</th>
             <th className="flex-1">Date Requested</th>
           </tr>
-
+          {this.state.reserve.length === 0 &&
+            <h2>No Notification</h2>
+          }
           {this.state.reserve.map(reserve => (
             <Link to={`insight/${reserve.id_booking}`} className='linkClick'>
               <tr className="display-flex data-table">

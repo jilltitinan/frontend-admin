@@ -15,9 +15,10 @@ class Locker extends Component {
             reserve: [],
         }
     }
-
-    componentDidMount() {
-        axios.get('https://locker54.azurewebsites.net/web/Locker')
+    componentDidMount = async () => {
+        const value = await localStorage.getItem('token')
+        axios.get('https://locker54.azurewebsites.net/web/Locker',
+            { headers: { "Authorization": `Bearer ${value}` } })
             .then(res => {
                 this.setState({ reserve: res.data });
             })
@@ -25,7 +26,7 @@ class Locker extends Component {
 
     handleClick(data) {
         this.props.locker(data);
-      }
+    }
 
     render() {
 
@@ -34,15 +35,17 @@ class Locker extends Component {
                 <table className="width-80per">
                     <p className="header-text"><b>LOCKERS</b></p>
                     <div className="addLocker">
-                         <a className='addStuff'>+ add locker</a>
+                        <a className='addStuff'>+ add locker</a>
                     </div>
-                   
+
                     <tr className="display-flex header-table">
                         <th className="flex-1">Locker ID</th>
                         <th className="flex-1">Location</th>
                         <th className="flex-1">Status</th>
                     </tr>
-
+                    {this.state.reserve.length === 0 &&
+                        <h2>No Locker</h2>
+                    }
                     {this.state.reserve.map(reserve => (
                         <Link to={`lockerDetail/${reserve.mac_address}`} className='linkClick' key={reserve.mac_address} onClick={() => this.handleClick(reserve.mac_address)}>
                             <tr className="display-flex data-table">
@@ -51,7 +54,7 @@ class Locker extends Component {
                                 <td className="flex-1">{reserve.isActive.toString()}</td>
                             </tr>
                         </Link>
-                        
+
                     ))}
 
                 </table>

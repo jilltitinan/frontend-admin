@@ -16,8 +16,10 @@ class LockerDetail extends Component {
         }
     }
 
-    componentDidMount() {
-        axios.get(`https://locker54.azurewebsites.net/web/lockerDetail?mac_address=${this.props.mac_address}`)
+    componentDidMount = async () => {
+        const value = await localStorage.getItem('token')
+        axios.get(`https://locker54.azurewebsites.net/web/lockerDetail?mac_address=${this.props.mac_address}`,
+            { headers: { "Authorization": `Bearer ${value}` } })
             .then(res => {
                 this.setState({ reserve: res.data, vacancieslist: res.data.vacancieslist });
                 console.log("locker detail ", this.state.reserve)

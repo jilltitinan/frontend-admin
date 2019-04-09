@@ -14,9 +14,12 @@ class Member extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount = async () => {
+    const value = await localStorage.getItem('token')
 
-    axios.get('https://locker54.azurewebsites.net/web/UserAccountAll')
+    axios.get('https://locker54.azurewebsites.net/web/UserAccountAll',
+      { headers: { "Authorization": `Bearer ${value}` } }
+    )
       .then(response => this.setState({ reserve: response.data }));
 
   }
@@ -43,7 +46,9 @@ class Member extends Component {
             <th className="flex-1">Booked</th>
             <th className="flex-1">Time up</th>
           </tr>
-
+          {this.state.reserve.length === 0 &&
+            <h2>No Member</h2>
+          }
           {this.state.reserve.map(reserve => (
             <Link to={`overview/${reserve.id_account}`} className='linkClick' >
               <tr className="display-flex data-table">

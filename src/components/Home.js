@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
-import kendal from '../images/kendal.jpg';
-import iconPresent from '../images/present.png';
-import Activity from './Activity.js';
-import Noti from './Noti';
-import Member from './Member';
-import Logout from './Logout';
+import kendal from '../images/profile.png';
 import { Link, Router, Route, browserHistory } from 'react-router';
-import Overview from './Overview';
-import Insight from './Insight';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-// import GoogleLogin from 'react-google-login';
-import { GoogleLogout } from 'react-google-login';
 
 import { connect } from 'react-redux';
 import { login } from '../actions';
@@ -44,7 +34,7 @@ class Header extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
-  openModal() {
+  openModal() {    
     this.setState({ modalIsOpen: true });
   }
 
@@ -58,20 +48,12 @@ class Header extends Component {
   }
 
   responseLogout() {
-    // console.log("respen logout : ", response)
-    // this.setState({ modalIsOpen: false });
+    localStorage.clear('token')
     browserHistory.push('/')
 
   }
 
   render() {
-
-    // const { id_reserve, code, status} = this.props.data.login;
-
-    console.log(this.props.location.pathname);
-
-    console.log("result : ", this.props.data);
-
     return (
       <div className="App">
         <div className='greenHeader' />
@@ -79,8 +61,8 @@ class Header extends Component {
 
         <div className='grayBorder'>
           <img src={kendal} height="105" width="105" />
-          <h1>{this.props.data.w3.ig} </h1>
-          <h2>{this.props.data.w3.Eea}</h2>
+          <h1>{this.props.data.name} </h1>
+          <h2>{this.props.data.id_account}</h2>
 
           <ul className='sidebar'>
             <li onClick={() => this.setState({ selected: 'activity2' })}><Link to='/activity' className={this.state.selected === 'activity2' ? 'active' : 'a:hover:not(.active)'} >Activity</Link></li>
@@ -97,7 +79,6 @@ class Header extends Component {
             onRequestClose={this.closeModal}
             style={customStyles}
             contentLabel="Example Modal"
-
           >
             <div className='modalLogout'>
               <h2 ref={subtitle => this.subtitle = subtitle}>Are you sure to logout?</h2>

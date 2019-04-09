@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, } from 'react';
 import logo from '../images/LOGOOOOO.png';
 import { Link, Router, Route, Redirect, browserHistory } from 'react-router';
 import GoogleLogin from 'react-google-login';
@@ -19,39 +19,24 @@ class Login extends Component {
         (async () => {
             let apiRes = null;
             try {
-                apiRes = await axios.get(`https://locker54.azurewebsites.net/web/IsAdmin?_Token=${response.tokenId}`)
+                apiRes = await axios.post('https://locker54.azurewebsites.net/web/adminsauthenticate',
+                    {
+                        "_Token": response.tokenId,
+                    }
+                )
                     .then(res => {
                         this.setState({ reserve: res.data });
                         console.log("id admin : ", res.data)
-                        this.props.login(response);
+                        localStorage.setItem('token', this.state.reserve);
+                        // this.props.login(response);
                         browserHistory.push('/activity')
                     })
             } catch (err) {
                 console.error("Error response:");
-                console.error(err.response.data);    // ***
-                console.error(err.response.status);  // ***
-                console.error(err.response.headers); // ***
                 this.successShow(err);
                 alert("Incorrect Email");
             }
-            // finally {
-            //     console.log("finally :     ", apiRes);
-            //     this.props.login(response);
-            //     browserHistory.push('/activity')
-            // }
         })();
-
-
-
-        // console.log("google response :", response);
-        // this.props.login(response);
-        // browserHistory.push('/activity')
-
-        // axios.get(`https://locker54.azurewebsites.net/api/Account/AdminAccount?id_account=${response.El}`)
-        //     .then(res => {
-        //         this.setState({ reserve: res.data });
-        //         console.log("id admin : ", res.data)
-        //     })
     }
 
     successShow(err) {
@@ -65,11 +50,6 @@ class Login extends Component {
         console.log("google response :", response);
 
     }
-
-    componentDidMount() {
-
-    }
-
 
     render() {
 

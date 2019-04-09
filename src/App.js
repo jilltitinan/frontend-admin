@@ -13,29 +13,59 @@ import Locker from './components/Locker';
 import LockerDetail from './components/LockerDetail';
 import Login from './components/Login';
 import AddAdmin from './components/AddAdmin';
+import Axios from 'axios';
+import { login } from '../src/actions';
+import { connect } from 'react-redux';
 
 class App extends Component {
 
+  componentWillMount = async () => {
+    const value = await localStorage.getItem('token');
+    if (value !== null) {
+      console.log("Before axios useraccount    ", value)
+      await Axios.post('https://locker54.azurewebsites.net/api/Account/checkToken', {
+        "_Token": value
+      }).then(res => {
+        if (res.status === 200) {
+          const information = res.data
+          this.setState({ accountInformation: information })
+          console.log("check token :  ", this.state.accountInformation)
+          this.props.login(this.state.accountInformation)
+          browserHistory.push('/activity')
+        }
+        else {
+          console.log("check token : broke")
+        }
+      })
+        .catch(err => {
+          console.log(err.res.data);
+          alert("Error Admin localstorage");
+
+        });
+    }
+  }
+
   render() {
     return (
+
       <div>
         <Router history={browserHistory}>
-          
-            <Route path="/" component={Login}/>
-            <Route path='/home' component={Home} >
-              <Route path="/activity" component={Activity} />
-              <Route path="/noti" component={Noti} />
-              <Route path="/member" component={Member} />
-              <Route path="/overview/:form" component={Overview} />
-              <Route path="/insight/:form2" component={Insight} />
-              <Route path="/logout" component={Logout} />
-              <Route path="/admin" component={admin} />
-              <Route path="/locker" component={Locker} />
-              <Route path='/lockerDetail/:form3' component={LockerDetail} />
-              <Route path="/addadmin" component={AddAdmin} />
-            </Route>
+
+          <Route path="/" component={Login} />
+          <Route path='/home' component={Home} >
+            <Route path="/activity" component={Activity} />
+            <Route path="/noti" component={Noti} />
+            <Route path="/member" component={Member} />
+            <Route path="/overview/:form" component={Overview} />
+            <Route path="/insight/:form2" component={Insight} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/admin" component={admin} />
+            <Route path="/locker" component={Locker} />
+            <Route path='/lockerDetail/:form3' component={LockerDetail} />
+            <Route path="/addadmin" component={AddAdmin} />
+          </Route>
         </Router>
-        
+
       </div>
 
 
@@ -43,4 +73,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { login })(App);
