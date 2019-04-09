@@ -3,47 +3,54 @@ import axios from 'axios';
 import _ from 'lodash';
 import { Link, browserHistory } from "react-router";
 
-class AddAdmin extends Component {
+
+class AddLocker extends Component {
     constructor(props) {
         super(props);
-        this.state = { name: '', email: '' };
+        this.state = { mac_address: '', location: '' };
         this.handleChange = this.handleChange.bind(this);
-        this.handleEmail = this.handleEmail.bind(this);
+        this.handleLocation = this.handleLocation.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
-        this.setState({ name: event.target.value });
+        this.setState({ mac_address: event.target.value });
     }
 
-    handleEmail(event) {
-        this.setState({ email: event.target.value });
+    handleLocation(event) {
+        this.setState({ location: event.target.value });
     }
 
-    handleSubmit(event) {
+    handleSubmit = async (event) => {
 
-        if (this.state.name.length === 0 || this.state.email.length === 0) {
+        if (this.state.mac_address.length === 0 || this.state.location.length === 0) {
             alert('Please fill in the form');
             event.preventDefault();
             this.setState({
-                name: '',
-                email: ''
+                mac_address: '',
+                location: ''
             });
         } else {
-            axios.post('https://locker54.azurewebsites.net/web/AddAdminAccount', {
-                "id_account": "string",
-                "name": this.state.name,
-                "phone": "string",
-                "email": this.state.email,
-                "role": "string",
-                "point": 0
+            const value = await localStorage.getItem('token')
+            axios.post('https://locker54.azurewebsites.net/web/AddLocker', {
+                "mac_address": this.state.mac_address,
+                "location": this.state.location,
+                "isActive": true
+            },
+                { headers: { "Authorization": `Bearer ${value}` } }
+            ) 
+            .then(res => {
+                if (res.status === 200) {
+                    event.preventDefault();
+                    alert('An information was submitted: ');            
+                    this.setState({
+                        mac_address: '',
+                        location: ''
+                    });                 
+                } else {
+                    alert('errrrrrrrrr  ');
+                }
             })
-            alert('An information was submitted: ' + this.state.value);
-            event.preventDefault();
-            this.setState({
-                name: '',
-                email: ''
-            });
         }
     }
 
@@ -54,29 +61,29 @@ class AddAdmin extends Component {
                 <div className='insightButton' onClick={browserHistory.goBack}>
                     <a className="previous">&laquo; Previous</a>
                 </div>
-                <p className="header-text"><b>ADMINISTRATOR</b></p>
+                <p className="header-text"><b>ADD LOCKER</b></p>
 
                 <form onSubmit={this.handleSubmit} >
                     <div className="containerAddadmin">
                         <div className="row">
                             <div className="col-25">
                                 <label>
-                                    Name - Surname:
+                                    Mac Address
                                 </label>
                             </div>
                             <div className="col-75">
-                                <input type="text" value={this.state.name} onChange={this.handleChange} />
+                                <input type="text" value={this.state.mac_address} onChange={this.handleChange} />
                             </div>
                         </div>
 
                         <div className="row">
                             <div className="col-25">
                                 <label>
-                                    Email:
+                                    Location:
                                 </label>
                             </div>
                             <div className="col-75">
-                                <input type="text" value={this.state.email} onChange={this.handleEmail} />
+                                <input type="text" value={this.state.location} onChange={this.handleLocation} />
                             </div>
                         </div>
                         <br></br>
@@ -84,10 +91,20 @@ class AddAdmin extends Component {
                             <input type="submit" value="Submit" />
                         </div>
                     </div>
+
+
                 </form>
+
+
+
             </div>
+
+
+
+
+
         );
     }
 }
 
-export default AddAdmin;
+export default AddLocker;

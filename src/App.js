@@ -16,6 +16,8 @@ import AddAdmin from './components/AddAdmin';
 import Axios from 'axios';
 import { login } from '../src/actions';
 import { connect } from 'react-redux';
+import AddLocker from './components/AddLocker';
+import AddVacancy from './components/AddVacancy';
 
 class App extends Component {
 
@@ -38,7 +40,7 @@ class App extends Component {
         }
       })
         .catch(err => {
-          console.log(err.res.data);
+          
           alert("Error Admin localstorage");
 
         });
@@ -63,6 +65,8 @@ class App extends Component {
             <Route path="/locker" component={Locker} />
             <Route path='/lockerDetail/:form3' component={LockerDetail} />
             <Route path="/addadmin" component={AddAdmin} />
+            <Route path="/addlocker" component={AddLocker} />
+            <Route path="/addvacancy" component={AddVacancy} />
           </Route>
         </Router>
 

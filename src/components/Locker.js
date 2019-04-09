@@ -35,7 +35,7 @@ class Locker extends Component {
                 <table className="width-80per">
                     <p className="header-text"><b>LOCKERS</b></p>
                     <div className="addLocker">
-                        <a className='addStuff'>+ add locker</a>
+                    <Link to='/addlocker' className='addStuff'>+ add locker</Link>
                     </div>
 
                     <tr className="display-flex header-table">

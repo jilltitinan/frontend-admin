@@ -38,14 +38,16 @@ class LockerDetail extends Component {
                     <p className="header-text"><b>LOCKER DETAIL</b></p>
                     <p><b>Locker ID  :</b> {this.state.reserve.lockerID} <b>Location  :</b> {this.state.reserve.location}  </p>
                     <div className="addLocker">
-                        <a className='addStuff'>+ add locker</a>
+                    <Link to='/addvacancy' className='addStuff'>+ add vacancy</Link>
                     </div>
                     <tr className="display-flex header-table">
                         <th className="flex-1">Locker ID</th>
                         <th className="flex-1">Location</th>
                         <th className="flex-1">Status</th>
                     </tr>
-
+                    {this.state.vacancieslist.length === 0 &&
+                        <h2>No Vacancy</h2>
+                    }
                     {this.state.vacancieslist.map(vacancieslist => (
                         <tr className="display-flex data-table">
                             <td className="flex-1" >{vacancieslist.no_vacancy}</td>
