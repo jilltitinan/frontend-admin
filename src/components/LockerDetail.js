@@ -31,7 +31,7 @@ class LockerDetail extends Component {
         return (
             <div className="main-display">
                 <div className='insightButton' onClick={browserHistory.goBack}>
-                    <a class="previous">&laquo; Previous</a>
+                    <a className="previous">&laquo; Previous</a>
                 </div>
 
                 <table className="width-80per">

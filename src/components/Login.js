@@ -12,7 +12,6 @@ class Login extends Component {
         super(props);
         this.state = {
             reserve: [],
-
         }
     }
     responseGoogle(response) {
@@ -43,12 +42,10 @@ class Login extends Component {
         this.setState({
             person: err.data
         });
-
     }
 
     responseGoogleFail(response) {
         console.log("google response :", response);
-
     }
 
     render() {

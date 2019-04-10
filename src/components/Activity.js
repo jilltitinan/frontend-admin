@@ -20,6 +20,7 @@ class Activity extends Component {
     )
       .then(res => {
         this.setState({ reserve: res.data });
+
       })
   }
 

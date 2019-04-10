@@ -21,7 +21,7 @@ import AddVacancy from './components/AddVacancy';
 
 class App extends Component {
 
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     const value = await localStorage.getItem('token');
     if (value !== null) {
       console.log("Before axios useraccount    ", value)
@@ -40,19 +40,15 @@ class App extends Component {
         }
       })
         .catch(err => {
-          
-          alert("Error Admin localstorage");
-
+          alert("Error Admin localstorage : ", err.data);
         });
     }
   }
 
   render() {
     return (
-
       <div>
         <Router history={browserHistory}>
-
           <Route path="/" component={Login} />
           <Route path='/home' component={Home} >
             <Route path="/activity" component={Activity} />
