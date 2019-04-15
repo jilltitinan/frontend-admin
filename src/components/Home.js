@@ -6,10 +6,6 @@ import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import { login } from '../actions';
 
-const responseGoogle = (response) => {
-  console.log(response);
-}
-
 const customStyles = {
   content: {
     top: '50%',
@@ -56,11 +52,10 @@ class Header extends Component {
   render() {
     return (
       <div className="App">
-        <div className='greenHeader' />
+        <div className='greenHeader'><h1  className='h1padding'>Locker Administrator Web Application</h1></div>
         {this.props.children}
 
         <div className='grayBorder'>
-          <img src={kendal} height="105" width="105" />
           <h1>{this.props.data.name} </h1>
           <h2>{this.props.data.id_account}</h2>
 
