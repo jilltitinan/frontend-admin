@@ -54,7 +54,9 @@ class Locker extends Component {
                                 <td className="flex-1">{reserve.isActive.toString()}</td>
                             </tr>
                         </Link>
+
                     ))}
+
                 </table>
             </div>
 

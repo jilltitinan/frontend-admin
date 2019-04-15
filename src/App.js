@@ -21,6 +21,7 @@ import AddVacancy from './components/AddVacancy';
 
 class App extends Component {
 
+<<<<<<< HEAD
   componentDidMount = async () => {
 
     // const express = require('express')
@@ -42,6 +43,9 @@ class App extends Component {
 
 
 
+=======
+  componentWillMount = async () => {
+>>>>>>> parent of 313fed7... deploy to firebase server
     const value = await localStorage.getItem('token');
     if (value !== null) {
       console.log("Before axios useraccount    ", value)
@@ -60,15 +64,19 @@ class App extends Component {
         }
       })
         .catch(err => {
-          alert("Error Admin localstorage : ", err.data);
+          
+          alert("Error Admin localstorage");
+
         });
     }
   }
 
   render() {
     return (
+
       <div>
         <Router history={browserHistory}>
+
           <Route path="/" component={Login} />
           <Route path='/home' component={Home} >
             <Route path="/activity" component={Activity} />

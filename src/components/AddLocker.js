@@ -22,7 +22,6 @@ class AddLocker extends Component {
     }
 
     handleSubmit = async (event) => {
-        const value = await localStorage.getItem('token')
 
         if (this.state.mac_address.length === 0 || this.state.location.length === 0) {
             alert('Please fill in the form');
@@ -32,30 +31,27 @@ class AddLocker extends Component {
                 location: ''
             });
         } else {
-            this.handleAxios(event, value);
-        }
-    }
-
-    handleAxios(event, value) {
-        axios.post('https://locker54.azurewebsites.net/web/AddLocker', {
-            "mac_address": this.state.mac_address,
-            "location": this.state.location,
-            "isActive": true
-        },
-            { headers: { "Authorization": `Bearer ${value}` } }
-        )
+            const value = await localStorage.getItem('token')
+            axios.post('https://locker54.azurewebsites.net/web/AddLocker', {
+                "mac_address": this.state.mac_address,
+                "location": this.state.location,
+                "isActive": true
+            },
+                { headers: { "Authorization": `Bearer ${value}` } }
+            ) 
             .then(res => {
                 if (res.status === 200) {
-                    alert('An information was submitted: ');
                     event.preventDefault();
+                    alert('An information was submitted: ');            
                     this.setState({
                         mac_address: '',
                         location: ''
-                    });
+                    });                 
                 } else {
                     alert('errrrrrrrrr  ');
                 }
             })
+        }
     }
 
     render() {
