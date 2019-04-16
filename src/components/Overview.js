@@ -12,9 +12,11 @@ class Overview extends Component {
     }
   }
 
-  componentDidMount() {
-
-    axios.get(`https://locker54.azurewebsites.net/web/UserOverview?id_account=${parseInt(_.last(window.location.pathname.split('/')))}`)
+  componentDidMount = async () => {
+    const value = await localStorage.getItem('token')
+    axios.get(`https://locker54.azurewebsites.net/web/UserOverview?id_account=${parseInt(_.last(window.location.pathname.split('/')))}`,
+      { headers: { "Authorization": `Bearer ${value}` } }
+    )
       .then(res => {
         const person = res.data
         this.setState({ people: person })
@@ -75,7 +77,7 @@ class Overview extends Component {
           ))}
 
           {
-            (this.state.people.timeUp == 0) && (this.state.people.using == 0) && <h3> no data</h3>
+            (this.state.people.timeUp === 0) && (this.state.people.using === 0) && <h3> no data</h3>
           }
 
         </table>

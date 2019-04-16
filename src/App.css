@@ -360,6 +360,13 @@ body {
   color: #00A6A6;
 }
 
+.header-small {
+  text-align: left;
+  font-size: 16px;
+  margin: 20px 0px;
+  color: #404244;
+}
+
 .width-100per {
   width: 100%;
 }

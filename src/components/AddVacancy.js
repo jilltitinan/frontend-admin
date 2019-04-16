@@ -58,7 +58,7 @@ class AddVacancy extends Component {
                             size: '',
                         });
                     } else {
-                        alert('errrrrrrrrr  ');
+                        alert('Something went wrong. Please try again.');
                     }
                 })
         }
@@ -71,7 +71,7 @@ class AddVacancy extends Component {
                 <div className='insightButton' onClick={browserHistory.goBack}>
                     <a className="previous">&laquo; Previous</a>
                 </div>
-                <p className="header-text"><b>ADD LOCKER</b></p>
+                <p className="header-text"><b>ADD VACANCY</b></p>
 
                 <form onSubmit={this.handleSubmit} >
                     <div className="containerAddadmin">
@@ -89,7 +89,7 @@ class AddVacancy extends Component {
                         <div className="row">
                             <div className="col-25">
                                 <label>
-                                    Number Vacancy (Upper Letter) :
+                                    Number Vacancy :
                                 </label>
                             </div>
                             <div className="col-75">
@@ -99,7 +99,7 @@ class AddVacancy extends Component {
                         <div className="row">
                             <div className="col-25">
                                 <label>
-                                    Size :
+                                    Size (Upper Letter) :
                                 </label>
                             </div>
                             <div className="col-75">

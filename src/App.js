@@ -62,7 +62,7 @@ class App extends Component {
       })
         .catch(err => {
           
-          alert("Error Admin localstorage");
+          alert("Something went wrong. Please try again.");
 
         });
     }
