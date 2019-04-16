@@ -38,7 +38,7 @@ class LockerDetail extends Component {
                     <p className="header-text"><b>LOCKER DETAIL</b></p>
                     <p><b>Locker ID  :</b> {this.state.reserve.lockerID} <b>Location  :</b> {this.state.reserve.location}  </p>
                     <div className="addLocker">
-                    <Link to='/addvacancy' className='addStuff'>+ add vacancy</Link>
+                        <Link to='/addvacancy' className='addStuff'>+ add vacancy</Link>
                     </div>
                     <tr className="display-flex header-table">
                         <th className="flex-1">Locker ID</th>

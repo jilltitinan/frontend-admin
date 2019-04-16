@@ -18,10 +18,10 @@ import { login } from '../src/actions';
 import { connect } from 'react-redux';
 import AddLocker from './components/AddLocker';
 import AddVacancy from './components/AddVacancy';
+import RemoveLocker from './components/RemoveLocker';
 
 class App extends Component {
 
-<<<<<<< HEAD
   componentDidMount = async () => {
 
     // const express = require('express')
@@ -43,9 +43,6 @@ class App extends Component {
 
 
 
-=======
-  componentWillMount = async () => {
->>>>>>> parent of 313fed7... deploy to firebase server
     const value = await localStorage.getItem('token');
     if (value !== null) {
       console.log("Before axios useraccount    ", value)
@@ -91,6 +88,7 @@ class App extends Component {
             <Route path="/addadmin" component={AddAdmin} />
             <Route path="/addlocker" component={AddLocker} />
             <Route path="/addvacancy" component={AddVacancy} />
+            <Route path="/removelocker" component={RemoveLocker} />
           </Route>
         </Router>
 
