@@ -57,10 +57,12 @@ class AddVacancy extends Component {
                             no_vacancy: '',
                             size: '',
                         });
-                    } else {
-                        alert('Something went wrong. Please try again.');
-                    }
-                })
+                    } 
+                }).catch(err => {
+          
+                    alert("Something went wrong. Please try again.", err.data);
+          
+                  });
         }
     }
 

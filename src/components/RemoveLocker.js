@@ -31,22 +31,24 @@ class RemoveLocker extends Component {
             });
         } else {
             const value = await localStorage.getItem('token')
-            axios.post('https://locker54.azurewebsites.net/api/LockerMetadata/DeleteLocker', {
+            axios.post('https://locker54.azurewebsites.net/web/DeleteLocker', {
                 "mac_address": this.state.mac_address,               
             },
                 // { headers: { "Authorization": `Bearer ${value}` } }
             ) 
             .then(res => {
-                if (res.status === 200) {
-                    event.preventDefault();
-                    alert('Remove successful.');            
+                if (res.status === 200) {                   
+                    alert('Remove successful.');  
+                    event.preventDefault();           
                     this.setState({
                         mac_address: '',
                     });                 
-                } else {
-                    alert('Something went wrong. Please try again.');
-                }
-            })
+                } 
+            }).catch(err => {
+          
+                alert("Something went wrong. Please try again.", err.data);
+      
+              });
         }
     }
 
@@ -77,18 +79,8 @@ class RemoveLocker extends Component {
                             <input type="submit" value="Submit" />
                         </div>
                     </div>
-
-
                 </form>
-
-
-
             </div>
-
-
-
-
-
         );
     }
 }

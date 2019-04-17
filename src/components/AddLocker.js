@@ -37,7 +37,7 @@ class AddLocker extends Component {
                 "location": this.state.location,
                 "isActive": true
             },
-                { headers: { "Authorization": `Bearer ${value}` } }
+                // { headers: { "Authorization": `Bearer ${value}` } }
             ) 
             .then(res => {
                 if (res.status === 200) {

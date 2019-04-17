@@ -62,7 +62,7 @@ class App extends Component {
       })
         .catch(err => {
           
-          alert("Something went wrong. Please try again.");
+          alert("Something went wrong. Please try again.", err.data);
 
         });
     }
