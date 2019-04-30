@@ -14,7 +14,7 @@ class Noti extends Component {
 
   componentDidMount = async () => {
     const value = await localStorage.getItem('token')
-    axios.get('https://locker54.azurewebsites.net/web/Notification',
+    axios.get('https://lockerce54.azurewebsites.net/web/Notification',
       { headers: { "Authorization": `Bearer ${value}` } }
     )
       .then(res => {

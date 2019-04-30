@@ -32,7 +32,7 @@ class AddLocker extends Component {
             });
         } else {
             const value = await localStorage.getItem('token')
-            axios.post('https://locker54.azurewebsites.net/web/AddLocker', {
+            axios.post('https://lockerce54.azurewebsites.net/web/AddLocker', {
                 "mac_address": this.state.mac_address,
                 "location": this.state.location,
                 "isActive": true

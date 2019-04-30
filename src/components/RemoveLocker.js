@@ -31,7 +31,7 @@ class RemoveLocker extends Component {
             });
         } else {
             const value = await localStorage.getItem('token')
-            axios.post('https://locker54.azurewebsites.net/web/DeleteLocker', {
+            axios.post('https://lockerce54.azurewebsites.net/web/DeleteLocker', {
                 "mac_address": this.state.mac_address,               
             },
                 // { headers: { "Authorization": `Bearer ${value}` } }

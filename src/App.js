@@ -46,7 +46,7 @@ class App extends Component {
     const value = await localStorage.getItem('token');
     if (value !== null) {
       console.log("Before axios useraccount    ", value)
-      await Axios.post('https://locker54.azurewebsites.net/api/Account/checkToken', {
+      await Axios.post('https://lockerce54.azurewebsites.net/api/Account/checkToken', {
         "_Token": value
       }).then(res => {
         if (res.status === 200) {

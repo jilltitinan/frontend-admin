@@ -14,7 +14,7 @@ class Admin extends Component {
 
     componentDidMount = async () => {
         const value = await localStorage.getItem('token')
-        axios.get('https://locker54.azurewebsites.net/web/Admin',
+        axios.get('https://lockerce54.azurewebsites.net/web/Admin',
             { headers: { "Authorization": `Bearer ${value}` } })
             .then(res => {
                 this.setState({ reserve: res.data });

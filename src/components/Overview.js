@@ -14,7 +14,7 @@ class Overview extends Component {
 
   componentDidMount = async () => {
     const value = await localStorage.getItem('token')
-    axios.get(`https://locker54.azurewebsites.net/web/UserOverview?id_account=${parseInt(_.last(window.location.pathname.split('/')))}`,
+    axios.get(`https://lockerce54.azurewebsites.net/web/UserOverview?id_account=${parseInt(_.last(window.location.pathname.split('/')))}`,
       { headers: { "Authorization": `Bearer ${value}` } }
     )
       .then(res => {
