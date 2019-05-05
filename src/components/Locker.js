@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
 import moment from 'moment';
-import { Link } from "react-router";
+import { Link, browserHistory } from "react-router";
 import { locker } from '../actions';
 import { connect } from 'react-redux';
 
@@ -17,6 +17,9 @@ class Locker extends Component {
     }
     componentDidMount = async () => {
         const value = await localStorage.getItem('token')
+        if(value===null){
+            browserHistory.push('/')
+          }    
         axios.get('https://lockerce54.azurewebsites.net/web/Locker',
             { headers: { "Authorization": `Bearer ${value}` } })
             .then(res => {
