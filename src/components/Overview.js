@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
 import { Link, browserHistory } from "react-router";
+import moment from 'moment';
 
 class Overview extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class Overview extends Component {
         const person = res.data
         this.setState({ people: person })
         this.setState({ bookList: this.state.people.bookingList })
-        console.log('tttttt', this.state.bookList);
+        // console.log('tttttt', this.state.bookList);
       })
   }
 
@@ -71,7 +72,7 @@ class Overview extends Component {
                 <td className="flex-1">{bookList.id_booking}</td>
                 <td className="flex-1">{bookList.id_user}</td>
                 <td className="flex-1">{bookList.location}</td>
-                <td className="flex-1">{bookList.dateModified}</td>
+                <td className="flex-1">{moment(bookList.dateModified).format('DD MMM YYYY')}</td>
               </tr>
             </Link>
           ))}

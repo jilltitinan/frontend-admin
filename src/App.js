@@ -45,19 +45,19 @@ class App extends Component {
 
     const value = await localStorage.getItem('token');
     if (value !== null) {
-      console.log("Before axios useraccount    ", value)
+      // console.log("Before axios useraccount    ", value)
       await Axios.post('https://lockerce54.azurewebsites.net/api/Account/checkToken', {
         "_Token": value
       }).then(res => {
         if (res.status === 200) {
           const information = res.data
           this.setState({ accountInformation: information })
-          console.log("check token :  ", this.state.accountInformation)
+          // console.log("check token :  ", this.state.accountInformation)
           this.props.login(this.state.accountInformation)
           browserHistory.push('/activity')
         }
         else {
-          console.log("check token : broke")
+          alert("Something went wrong. Please try again.");
         }
       })
         .catch(err => {

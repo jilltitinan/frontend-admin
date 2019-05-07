@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import { Link, browserHistory } from "react-router";
 import { withRouter } from 'react-router-dom';
+import moment from 'moment';
 
 class Insight extends Component {
 
@@ -20,7 +21,7 @@ class Insight extends Component {
       .then(res => {
         const info = res.data
         this.setState({ detail: info })
-        console.log('detailll ' + this.state.detail);
+        // console.log('detailll ' + this.state.detail);
       })
   }
 
@@ -44,9 +45,9 @@ class Insight extends Component {
           <p className='pInsight'><b>Leave ID:</b> {this.state.detail.bookingID} </p>
           <p className='pInsight'><b>Place: </b> {this.state.detail.location}</p>
           <p className='pInsight'><b>Size: </b> {this.state.detail.size}</p>
-          <p className='pInsight'><b>Day Start: </b> {this.state.detail.startDate}</p>
-          <p className='pInsight'><b>Day End: </b> {this.state.detail.endDate}</p>
-          <p className='pInsight'><b>Requested Date: </b> {this.state.detail.dateModified}</p>
+          <p className='pInsight'><b>Day Start: </b> {moment(this.state.detail.startDate).format('DD MMM YYYY, hh:mm A')}</p>
+          <p className='pInsight'><b>Day End: </b> {moment(this.state.detail.endDate).format('DD MMM YYYY, hh:mm A')}</p>
+          <p className='pInsight'><b>Requested Date: </b> {moment(this.state.detail.dateModified).format('DD MMM YYYY, hh:mm A')}</p>
           <p className='pInsight'><b>Number Vacancy: </b> {this.state.detail.numberVacancy}</p>
         </div>
 

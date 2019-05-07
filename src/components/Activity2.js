@@ -20,7 +20,7 @@ class Insight extends Component {
       .then(res => {
         const info = res.data
         this.setState({ detail: info })
-        console.log('detailll ' + this.state.detail);
+        // console.log('detailll ' + this.state.detail);
       })
   }
 

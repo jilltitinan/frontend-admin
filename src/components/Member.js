@@ -25,8 +25,8 @@ class Member extends Component {
   }
 
   handleClick(id_account) {
-    console.log("handle clickkkk");
-    console.log('booking ' + id_account);
+    // console.log("handle clickkkk");
+    // console.log('booking ' + id_account);
     this.props.member(id_account);
     // this.props.member(this.state.reserve);
   }

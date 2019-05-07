@@ -22,7 +22,7 @@ class LockerDetail extends Component {
             { headers: { "Authorization": `Bearer ${value}` } })
             .then(res => {
                 this.setState({ reserve: res.data, vacancieslist: res.data.vacancieslist });
-                console.log("locker detail ", this.state.reserve)
+                // console.log("locker detail ", this.state.reserve)
             })
     }
 

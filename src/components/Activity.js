@@ -49,7 +49,7 @@ class Activity extends Component {
                 <td className="flex-1">{reserve.id_booking}</td>
                 <td className="flex-1">{reserve.id_user}</td>
                 <td className="flex-1">{reserve.location}</td>
-                <td className="flex-1">{moment(reserve.dateModified).format('DD-MM-YYYY')}</td>
+                <td className="flex-1">{moment(reserve.dateModified).format('DD MMM YYYY')}</td>
               </tr>
 
             </Link>

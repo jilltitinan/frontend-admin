@@ -48,21 +48,18 @@ class AddVacancy extends Component {
             },
                 { headers: { "Authorization": `Bearer ${value}` } }
             )
-                .then(res => {
-                    if (res.status === 200) {
-                        alert('An information was submitted');
-                        event.preventDefault();
-                        this.setState({
-                            mac_address: `${this.props.mac_address}`,
-                            no_vacancy: '',
-                            size: '',
-                        });
-                    } 
-                }).catch(err => {
-          
-                    alert("Something went wrong. Please try again.", err.data);
-          
-                  });
+
+            alert('An information was submitted');
+            event.preventDefault();
+            this.setState({
+                mac_address: `${this.props.mac_address}`,
+                no_vacancy: '',
+                size: '',
+            });
+
+            // }).catch(err => {          
+            //     alert("Something went wrong. Please try again.", err.data);
+            //   });
         }
     }
 

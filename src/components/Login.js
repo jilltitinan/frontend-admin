@@ -26,13 +26,13 @@ class Login extends Component {
                 )
                     .then(res => {
                         this.setState({ reserve: res.data });
-                        console.log("id admin : ", res.data)
+                        // console.log("id admin : ", res.data)
                         localStorage.setItem('token', this.state.reserve);
                         // this.props.login(response);
                         browserHistory.push('/activity')
                     })
             } catch (err) {
-                console.error("Error response:");
+                // console.error("Error response:");
                 this.successShow(err);
                 alert("Incorrect Email");
             }
@@ -47,7 +47,7 @@ class Login extends Component {
     }
 
     responseGoogleFail(response) {
-        console.log("google response :", response);
+        // console.log("google response :", response);
 
     }
 
