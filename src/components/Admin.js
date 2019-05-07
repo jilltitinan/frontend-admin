@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
 import moment from 'moment';
-import { Link } from "react-router";
+import { Link, browserHistory } from "react-router";
 
 class Admin extends Component {
     constructor(props) {
@@ -14,6 +14,9 @@ class Admin extends Component {
 
     componentDidMount = async () => {
         const value = await localStorage.getItem('token')
+        if(value===null){
+            browserHistory.push('/')
+          }    
         axios.get('https://lockerce54.azurewebsites.net/web/Admin',
             { headers: { "Authorization": `Bearer ${value}` } })
             .then(res => {

@@ -18,6 +18,9 @@ class LockerDetail extends Component {
 
     componentDidMount = async () => {
         const value = await localStorage.getItem('token')
+        if(value===null){
+            browserHistory.push('/')
+          }    
         axios.get(`https://lockerce54.azurewebsites.net/web/lockerDetail?mac_address=${this.props.mac_address}`,
             { headers: { "Authorization": `Bearer ${value}` } })
             .then(res => {

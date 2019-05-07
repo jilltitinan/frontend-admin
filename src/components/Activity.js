@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
 import moment from 'moment';
-import { Link } from "react-router";
+import { Link, browserHistory } from "react-router";
 import Home from './Home'
 
 class Activity extends Component {
@@ -15,6 +15,10 @@ class Activity extends Component {
 
   componentDidMount = async () => {
     const value = await localStorage.getItem('token')
+      if(value===null){
+        browserHistory.push('/')
+      }
+    
     axios.get('https://lockerce54.azurewebsites.net/web/Activity',
       { headers: { "Authorization": `Bearer ${value}` } }
     )

@@ -29,7 +29,7 @@ class Header extends Component {
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
-
+ 
   openModal() {    
     this.setState({ modalIsOpen: true });
   }

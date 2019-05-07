@@ -4,7 +4,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { member } from '../actions';
-import { Link } from "react-router";
+import { Link, browserHistory } from "react-router";
 
 class Member extends Component {
   constructor(props) {
@@ -16,7 +16,10 @@ class Member extends Component {
 
   componentDidMount = async () => {
     const value = await localStorage.getItem('token')
-
+    if(value===null){
+      browserHistory.push('/')
+    }
+  
     axios.get('https://lockerce54.azurewebsites.net/web/UserAccountAll',
       { headers: { "Authorization": `Bearer ${value}` } }
     )
