@@ -39,7 +39,7 @@ class AddVacancy extends Component {
             });
         } else {
             const value = await localStorage.getItem('token')
-            axios.post('https://lockerce54.azurewebsites.net/web/AddVacant', {
+            axios.post('https://celocker54.azurewebsites.net/web/AddVacant', {
                 "id_vacancy": 0,
                 "no_vacancy": this.state.no_vacancy,
                 "size": this.state.size,

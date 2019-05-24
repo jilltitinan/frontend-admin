@@ -17,7 +17,7 @@ class Admin extends Component {
         if(value===null){
             browserHistory.push('/')
           }    
-        axios.get('https://lockerce54.azurewebsites.net/web/Admin',
+        axios.get('https://celocker54.azurewebsites.net/web/Admin',
             { headers: { "Authorization": `Bearer ${value}` } })
             .then(res => {
                 this.setState({ reserve: res.data });

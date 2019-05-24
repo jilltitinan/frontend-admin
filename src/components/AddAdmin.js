@@ -30,7 +30,7 @@ class AddAdmin extends Component {
                 email: ''
             });
         } else {
-            axios.post('https://lockerce54.azurewebsites.net/web/AddAdminAccount', {
+            axios.post('https://celocker54.azurewebsites.net/web/AddAdminAccount', {
                 "id_account": "string",
                 "name": this.state.name,
                 "phone": "string",

@@ -19,7 +19,7 @@ class Login extends Component {
         (async () => {
             let apiRes = null;
             try {
-                apiRes = await axios.post('https://lockerce54.azurewebsites.net/web/adminsauthenticate',
+                apiRes = await axios.post('https://celocker54.azurewebsites.net/web/adminsauthenticate',
                     {
                         "_Token": response.tokenId,
                     }

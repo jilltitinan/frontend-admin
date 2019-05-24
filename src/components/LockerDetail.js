@@ -21,7 +21,7 @@ class LockerDetail extends Component {
         if(value===null){
             browserHistory.push('/')
           }    
-        axios.get(`https://lockerce54.azurewebsites.net/web/lockerDetail?mac_address=${this.props.mac_address}`,
+        axios.get(`https://celocker54.azurewebsites.net/web/lockerDetail?mac_address=${this.props.mac_address}`,
             { headers: { "Authorization": `Bearer ${value}` } })
             .then(res => {
                 this.setState({ reserve: res.data, vacancieslist: res.data.vacancieslist });

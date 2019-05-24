@@ -20,7 +20,7 @@ class Member extends Component {
       browserHistory.push('/')
     }
   
-    axios.get('https://lockerce54.azurewebsites.net/web/UserAccountAll',
+    axios.get('https://celocker54.azurewebsites.net/web/UserAccountAll',
       { headers: { "Authorization": `Bearer ${value}` } }
     )
       .then(response => this.setState({ reserve: response.data }));

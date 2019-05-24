@@ -19,7 +19,7 @@ class Overview extends Component {
       browserHistory.push('/')
     }
   
-    axios.get(`https://lockerce54.azurewebsites.net/web/UserOverview?id_account=${parseInt(_.last(window.location.pathname.split('/')))}`,
+    axios.get(`https://celocker54.azurewebsites.net/web/UserOverview?id_account=${parseInt(_.last(window.location.pathname.split('/')))}`,
       { headers: { "Authorization": `Bearer ${value}` } }
     )
       .then(res => {

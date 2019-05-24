@@ -19,7 +19,7 @@ class Activity extends Component {
         browserHistory.push('/')
       }
     
-    axios.get('https://lockerce54.azurewebsites.net/web/Activity',
+    axios.get('https://celocker54.azurewebsites.net/web/Activity',
       { headers: { "Authorization": `Bearer ${value}` } }
     )
       .then(res => {

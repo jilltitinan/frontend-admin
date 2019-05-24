@@ -20,7 +20,7 @@ class Locker extends Component {
         if(value===null){
             browserHistory.push('/')
           }    
-        axios.get('https://lockerce54.azurewebsites.net/web/Locker',
+        axios.get('https://celocker54.azurewebsites.net/web/Locker',
             { headers: { "Authorization": `Bearer ${value}` } })
             .then(res => {
                 this.setState({ reserve: res.data });

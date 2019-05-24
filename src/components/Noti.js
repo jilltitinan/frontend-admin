@@ -18,7 +18,7 @@ class Noti extends Component {
       browserHistory.push('/')
     }
   
-    axios.get('https://lockerce54.azurewebsites.net/web/Notification',
+    axios.get('https://celocker54.azurewebsites.net/web/Notification',
       { headers: { "Authorization": `Bearer ${value}` } }
     )
       .then(res => {
